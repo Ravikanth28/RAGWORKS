@@ -1,0 +1,82 @@
+{
+  "knowledge": [
+    {
+      "id": "pricing-standard",
+      "category": "pricing",
+      "keywords": ["price", "cost", "rate", "charge", "fee", "how much", "pay", "money", "rupee", "₹"],
+      "content": "Standard parking rate is ₹20 per hour for all locations (Anna Nagar, T Nagar, Velachery, Mall Parking). No additional peak-hour surcharges apply at this time."
+    },
+    {
+      "id": "pricing-duration",
+      "category": "pricing",
+      "keywords": ["maximum", "minimum", "max", "min", "hours", "duration", "long", "stay", "overnight", "limit"],
+      "content": "Minimum booking duration is 1 hour; maximum is 24 hours. No overnight discount is currently offered. Cost = duration (hrs) × ₹20."
+    },
+    {
+      "id": "location-anna-nagar",
+      "category": "location",
+      "keywords": ["anna", "anna nagar", "annanagar", "2nd avenue", "600040", "arch"],
+      "content": "Anna Nagar Parking — 2nd Avenue, Anna Nagar, Chennai 600040. 8 total slots (IDs: AN-001 to AN-008). Open 24×7. Nearest landmark: Anna Arch. Good connectivity via MTC bus routes."
+    },
+    {
+      "id": "location-t-nagar",
+      "category": "location",
+      "keywords": ["t nagar", "tnagar", "usman", "thyagaraya", "600017", "pondy bazaar", "nalli"],
+      "content": "T Nagar Parking — Usman Road, T Nagar, Chennai 600017. 6 total slots (IDs: TN-001 to TN-006). Near Pondy Bazaar and Nalli Silks. High weekend demand — book in advance."
+    },
+    {
+      "id": "location-velachery",
+      "category": "location",
+      "keywords": ["velachery", "100 feet", "600042", "vr mall", "phoenix"],
+      "content": "Velachery Parking — 100 Feet Road, Velachery, Chennai 600042. 10 total slots (IDs: VL-001 to VL-010) — the largest lot. Near VR Chennai Mall and Phoenix MarketCity."
+    },
+    {
+      "id": "location-mall",
+      "category": "location",
+      "keywords": ["mall", "express avenue", "express", "mall parking", "ea"],
+      "content": "Mall Parking (Express Avenue) — Dedicated lot at Express Avenue mall, Chennai 600002. Validated parking available for shoppers. Ask at the information desk for validation."
+    },
+    {
+      "id": "policy-booking",
+      "category": "policy",
+      "keywords": ["book", "booking", "reserve", "reservation", "how to", "process", "steps"],
+      "content": "To book: (1) Select a location, (2) Click a free slot on the map grid, (3) Choose duration (1–24h), (4) Click 'Book Slot'. Booking is instant. The slot auto-releases when the timer expires."
+    },
+    {
+      "id": "policy-cancellation",
+      "category": "policy",
+      "keywords": ["cancel", "release", "refund", "vacate", "leave", "free", "early"],
+      "content": "Slots can be released at any time before expiry by clicking 'Release Slot' on the Active Bookings panel. Slots auto-release when the duration ends. No partial refunds for early release."
+    },
+    {
+      "id": "policy-availability",
+      "category": "policy",
+      "keywords": ["available", "free", "open", "slots", "capacity", "full", "occupied", "check"],
+      "content": "Slot availability is updated in real-time. If a location shows 0 available, all slots are occupied — try another location or wait. The system polls active bookings every 15 seconds."
+    },
+    {
+      "id": "policy-nlp",
+      "category": "policy",
+      "keywords": ["natural language", "nlp", "assistant", "smart", "type", "ask", "text", "query"],
+      "content": "The Smart Assistant understands natural language. Examples: 'Book parking near mall for 2 hours', 'Show slots at Anna Nagar', 'Find parking in Velachery for 3 hours', 'Release slot AN-001'."
+    },
+    {
+      "id": "tips-peak",
+      "category": "tips",
+      "keywords": ["busy", "peak", "weekend", "crowded", "traffic", "rush", "saturday", "sunday"],
+      "content": "Busiest times: 10 AM–1 PM and 5 PM–8 PM on weekdays. T Nagar is especially busy on Saturdays. Velachery fills up during weekend mall hours. Book early to guarantee a spot."
+    },
+    {
+      "id": "tips-payment",
+      "category": "tips",
+      "keywords": ["payment", "upi", "cash", "card", "pay", "online", "gpay", "phonepe"],
+      "content": "Payment integration (UPI, debit/credit card) is coming soon. Currently the system calculates and displays the cost; payment is handled at the parking booth."
+    },
+    {
+      "id": "tips-slot-ids",
+      "category": "tips",
+      "keywords": ["slot id", "slot number", "id format", "AN", "TN", "VL", "name"],
+      "content": "Slot ID format: <location prefix>-<number>. Anna Nagar: AN-001…AN-008. T Nagar: TN-001…TN-006. Velachery: VL-001…VL-010. You can request a specific slot by ID when booking."
+    }
+  ]
+}
