@@ -83,7 +83,7 @@
       "address": "100 Feet Road, Velachery, Chennai - 600042",
       "totalSlots": 10,
       "ratePerHour": 20,
-      "mapImageUrl": "/anna_nagar_map.png",
+      "mapImageUrl": "/velachery_map.png",
       "slots": [
         {
           "id": "VL-001",
@@ -133,7 +133,7 @@
       "address": "Express Avenue Mall, Royapettah, Chennai - 600014",
       "totalSlots": 12,
       "ratePerHour": 20,
-      "mapImageUrl": "/t_nagar_map.png",
+      "mapImageUrl": "/mall_parking_map.png",
       "slots": [
         {
           "id": "MP-001",
