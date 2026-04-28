@@ -669,16 +669,6 @@ pytest tests/ --cov=. --cov-report=term-missing
 
 ---
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Run tests: `pytest backend/tests/ -v`
-4. Commit and push
-5. Open a Pull Request
-
----
-
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
