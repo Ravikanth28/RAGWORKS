@@ -33,7 +33,7 @@
 ## Project Description
 
 **Smart Parking Slot Booker** is a real-time parking reservation system for Chennai, India.  
-Users can browse parking locations, view live slot availability on a satellite map, and book or release slots — all through a modern React UI or via a **natural-language assistant**.
+Users can browse parking locations, view live slot availability on an **animated parking lot grid**, and book or release slots — all through a modern React UI or via a **natural-language assistant**.
 
 ### What makes this system "smart"?
 
@@ -329,10 +329,8 @@ project-root/
 │
 ├── backend/
 │   ├── app.py                         ← Flask entry point + create_app() factory
-│   ├── mcp_logic.py                   ← Legacy MCP module (preserved for reference)
 │   ├── parking_data.json              ← Slot/location persistence (JSON)
 │   ├── parking_knowledge.json         ← RAG knowledge base (13 entries)
-│   ├── download_maps.py               ← Utility: capture Google Maps screenshots
 │   ├── requirements.txt               ← Python dependencies
 │   │
 │   ├── mcp/                           ← Model Context Protocol layer
@@ -427,7 +425,6 @@ Slot-level detail for one location.
   "ratePerHour": 20,
   "totalSlots": 8,
   "availableSlots": 7,
-  "mapImageUrl": "/anna_nagar_map.png",
   "slots": [
     { "id": "AN-001", "status": "free" },
     { "id": "AN-002", "status": "occupied", "booking_id": "A1B2C3D4" }
@@ -592,15 +589,9 @@ npm run dev
 # → http://localhost:3000  (proxies /api → :5000)
 ```
 
-### Map Screenshots *(optional, one-time)*
+### Map Screenshots *(removed — feature deprecated)*
 
-```bash
-pip install playwright
-playwright install chromium
-cd backend
-python download_maps.py
-# → saves PNG files to frontend/public/
-```
+> The satellite map feature has been removed. The UI uses a pure CSS animated parking lot visualization instead.
 
 ---
 
@@ -642,7 +633,7 @@ pytest tests/ --cov=. --cov-report=term-missing
 | Feature | Screenshot |
 |---|---|
 | Dashboard & Location Selector | `docs/screenshots/dashboard.png` |
-| Slot Grid (satellite map view) | `docs/screenshots/slot_grid.png` |
+| Slot Grid (animated parking lot) | `docs/screenshots/slot_grid.png` |
 | Booking Panel | `docs/screenshots/booking_panel.png` |
 | Active Bookings with Timer | `docs/screenshots/active_bookings.png` |
 | NLP Smart Assistant | `docs/screenshots/nlp_input.png` |

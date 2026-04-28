@@ -130,7 +130,6 @@ class SlotService:
             "ratePerHour":    loc["ratePerHour"],
             "totalSlots":     loc["totalSlots"],
             "availableSlots": free,
-            "mapImageUrl":    loc.get("mapImageUrl", ""),
             "slots":          slots,
         }
 

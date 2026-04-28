@@ -33,7 +33,6 @@ SAMPLE_DATA = {
             "address": "123 Test Street, Chennai",
             "totalSlots": 4,
             "ratePerHour": 20,
-            "mapImageUrl": "",
             "slots": [
                 {"id": "TL-001", "status": "free"},
                 {"id": "TL-002", "status": "free"},

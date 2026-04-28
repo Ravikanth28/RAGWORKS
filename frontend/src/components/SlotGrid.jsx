@@ -1,18 +1,34 @@
-export default function SlotGrid({ slots, selectedSlot, onSelectSlot, mapImageUrl }) {
+export default function SlotGrid({ slots, selectedSlot, onSelectSlot }) {
   const leftSlots = slots.slice(0, Math.ceil(slots.length / 2));
   const rightSlots = slots.slice(Math.ceil(slots.length / 2));
+  const freeCount = slots.filter(s => s.status === 'free').length;
+  const occupiedCount = slots.length - freeCount;
+  const occupancyPct = slots.length > 0 ? Math.round((occupiedCount / slots.length) * 100) : 0;
 
   return (
     <div className="parking-lot-wrapper">
-      <div 
-        className="satellite-map-container"
-        style={{
-          backgroundImage: mapImageUrl ? `url(${mapImageUrl})` : 'none',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="satellite-overlay">
+      <div className="parking-lot-container">
+
+        {/* Header bar */}
+        <div className="parking-lot-header">
+          <span className="parking-lot-label">🅿 Parking Lot</span>
+          <div className="parking-lot-stats">
+            <span className="plh-stat free">🟢 {freeCount} Free</span>
+            <span className="plh-stat occupied">🔴 {occupiedCount} Occupied</span>
+          </div>
+          <span className="parking-lot-entry">↑ ENTRY / EXIT</span>
+        </div>
+
+        {/* Occupancy bar */}
+        <div className="lot-occupancy-bar-wrapper">
+          <div className="lot-occupancy-bar">
+            <div className="lot-occupancy-fill" style={{ width: `${occupancyPct}%` }} />
+          </div>
+          <span className="lot-occupancy-label">{occupancyPct}% occupied</span>
+        </div>
+
+        {/* Slot grid body */}
+        <div className="parking-lot-body">
           <div className="parking-area">
             <div className="parking-col left-col">
               {leftSlots.map(slot => (
@@ -20,7 +36,11 @@ export default function SlotGrid({ slots, selectedSlot, onSelectSlot, mapImageUr
               ))}
             </div>
 
-            <div className="driveway-vertical"></div>
+            <div className="driveway-vertical">
+              <div className="driveway-arrow">▼</div>
+              <div className="driveway-arrow">▼</div>
+              <div className="driveway-arrow">▼</div>
+            </div>
 
             <div className="parking-col right-col">
               {rightSlots.map(slot => (
@@ -28,7 +48,21 @@ export default function SlotGrid({ slots, selectedSlot, onSelectSlot, mapImageUr
               ))}
             </div>
           </div>
+
+          {/* Legend */}
+          <div className="parking-lot-legend">
+            <span className="legend-item">
+              <span className="legend-swatch free-swatch"></span>Free — Click to book
+            </span>
+            <span className="legend-item">
+              <span className="legend-swatch selected-swatch"></span>Selected
+            </span>
+            <span className="legend-item">
+              <span className="legend-swatch occupied-swatch"></span>Occupied
+            </span>
+          </div>
         </div>
+
       </div>
     </div>
   )

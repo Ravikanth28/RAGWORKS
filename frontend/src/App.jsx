@@ -58,7 +58,12 @@ function App() {
             <div className="header-logo">🅿️</div>
             <div>
               <div className="header-title">Smart Parking Slot Booker</div>
-              <div className="header-subtitle">MCP — Model Context Protocol</div>
+              <div className="header-subtitle">Chennai, Tamil Nadu &nbsp;·&nbsp; MCP + RAG + Agentic AI</div>
+            </div>
+            <div className="header-tech-pills">
+              <span className="tech-pill mcp">MCP</span>
+              <span className="tech-pill rag">RAG</span>
+              <span className="tech-pill ai">Agentic AI</span>
             </div>
           </div>
           <div className="header-stats">
@@ -128,7 +133,6 @@ function App() {
                       slots={slots}
                       selectedSlot={selectedSlot}
                       onSelectSlot={setSelectedSlot}
-                      mapImageUrl={slotMeta.mapImageUrl}
                     />
                     <BookingPanel
                       selectedSlot={selectedSlot}
@@ -155,6 +159,22 @@ function App() {
           onRefresh={handleRefresh}
         />
       </main>
+      {/* Footer */}
+      <footer className="app-footer">
+        <div className="footer-inner">
+          <span className="footer-brand">🅿️ Smart Parking — Chennai</span>
+          <div className="footer-stack">
+            <span>Flask + React + Vite</span>
+            <span className="footer-dot">·</span>
+            <span>MCP Pipeline</span>
+            <span className="footer-dot">·</span>
+            <span>RAG Knowledge Base</span>
+            <span className="footer-dot">·</span>
+            <span>Multi-Agent System</span>
+          </div>
+          <span className="footer-rights">₹20 / hr · Auto-release timers · Trace-ID observability</span>
+        </div>
+      </footer>
     </div>
   )
 }

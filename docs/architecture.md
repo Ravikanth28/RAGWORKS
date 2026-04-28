@@ -12,6 +12,8 @@ Each layer has a single responsibility and communicates only with the layer dire
 │  Components: LocationSelector, SlotGrid, BookingPanel,    │
 │              ActiveBookings, NLPInput, Timer              │
 │  State:      useParking.js (custom hook)                  │
+│  Slot UI:    Pure-CSS animated parking lot grid           │
+│              (no map images — occupancy bars + animations)│
 └──────────────────────────┬───────────────────────────────┘
                            │ HTTP REST  (/api/*)
                            │ Vite proxy → :5000

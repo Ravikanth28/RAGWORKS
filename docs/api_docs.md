@@ -72,7 +72,6 @@ Returns detailed slot status for a single location.
   "ratePerHour": 20,
   "totalSlots": 8,
   "availableSlots": 7,
-  "mapImageUrl": "/anna_nagar_map.png",
   "slots": [
     { "id": "AN-001", "status": "free" },
     { "id": "AN-002", "status": "occupied", "booking_id": "A1B2C3D4" }

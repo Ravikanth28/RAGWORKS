@@ -40,7 +40,6 @@ export function useParking() {
         ratePerHour: data.ratePerHour,
         totalSlots: data.totalSlots,
         availableSlots: data.availableSlots,
-        mapImageUrl: data.mapImageUrl,
       })
     } catch (err) {
       addToast('Failed to load slots', 'error')

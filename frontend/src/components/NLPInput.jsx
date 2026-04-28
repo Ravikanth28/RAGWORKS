@@ -13,32 +13,48 @@ export default function NLPInput({ onSend, onPrefill }) {
     setResponse(result)
     setLoading(false)
 
-    // If the NLP returned a prefill action, pass it up
     if (result?.action === 'book' && result?.prefill) {
       onPrefill(result.prefill)
     }
   }
 
   const examples = [
-    'Book parking near mall for 2 hours',
-    'Show slots at Anna Nagar',
-    'Find parking in Velachery for 3 hours',
+    { label: '📅 Book mall', text: 'Book parking near mall for 2 hours' },
+    { label: '🔍 Check Anna Nagar', text: 'Show available slots at Anna Nagar' },
+    { label: '🚗 Velachery 3h', text: 'Find parking in Velachery for 3 hours' },
+    { label: '💰 Pricing', text: 'How much does parking cost at T Nagar' },
   ]
+
+  const confidence = response?.parsed?.confidence
+  const confColor = confidence >= 0.8 ? 'var(--accent-green)' : confidence >= 0.4 ? 'var(--accent-amber)' : 'var(--accent-red)'
 
   return (
     <div className="nlp-section">
       <div className="nlp-card">
         <div className="nlp-header">
           <span className="nlp-icon">🤖</span>
-          <h2>Smart Assistant — Natural Language Input</h2>
+          <div>
+            <h2>AI Smart Assistant</h2>
+            <p className="nlp-subtitle">Powered by MCP Intent Engine + RAG Knowledge Base</p>
+          </div>
+          <div className="nlp-pipeline">
+            <span className="pipeline-step">Guardrails</span>
+            <span className="pipeline-arrow">→</span>
+            <span className="pipeline-step">IntentEngine</span>
+            <span className="pipeline-arrow">→</span>
+            <span className="pipeline-step">RAG</span>
+            <span className="pipeline-arrow">→</span>
+            <span className="pipeline-step">Agent</span>
+          </div>
         </div>
+
         <form onSubmit={handleSubmit}>
           <div className="nlp-input-row">
             <input
               id="nlp-input"
               className="input"
               type="text"
-              placeholder='Try: "Book parking near mall for 2 hours"'
+              placeholder='e.g. "Book parking near mall for 2 hours" or "Show slots at Anna Nagar"'
               value={text}
               onChange={e => setText(e.target.value)}
             />
@@ -48,37 +64,57 @@ export default function NLPInput({ onSend, onPrefill }) {
               type="submit"
               disabled={loading || !text.trim()}
             >
-              {loading ? '⏳' : '🔍'} Parse
+              {loading ? '⏳ Parsing...' : '🔍 Ask AI'}
             </button>
           </div>
         </form>
 
-        <div style={{ marginTop: '8px', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+        <div className="nlp-examples">
           {examples.map(ex => (
             <button
-              key={ex}
-              className="btn btn-ghost"
-              style={{ fontSize: '0.75rem', padding: '6px 12px' }}
-              onClick={() => setText(ex)}
+              key={ex.text}
+              className="btn btn-ghost example-chip"
+              onClick={() => setText(ex.text)}
             >
-              {ex}
+              {ex.label}
             </button>
           ))}
         </div>
 
         {response && (
           <div className="nlp-response">
-            {response.message && <p className="message">{response.message}</p>}
+            {response.message && (
+              <div className="nlp-response-message">
+                <span className="nlp-response-icon">💬</span>
+                <p className="message">{response.message}</p>
+              </div>
+            )}
             {response.parsed && (
               <div className="nlp-parsed">
-                <span className="badge badge-cyan">Intent: {response.parsed.intent}</span>
+                <span className="badge badge-cyan">
+                  Intent: {response.parsed.intent}
+                </span>
                 {response.parsed.params?.location && (
-                  <span className="badge badge-green">Location: {response.parsed.params.location}</span>
+                  <span className="badge badge-green">
+                    📍 {response.parsed.params.location}
+                  </span>
                 )}
                 {response.parsed.params?.duration && (
-                  <span className="badge badge-amber">Duration: {response.parsed.params.duration}h</span>
+                  <span className="badge badge-amber">
+                    ⏱ {response.parsed.params.duration}h
+                  </span>
                 )}
-                <span className="badge badge-cyan">Confidence: {(response.parsed.confidence * 100).toFixed(0)}%</span>
+                {confidence !== undefined && (
+                  <span className="badge" style={{ background: 'rgba(255,255,255,0.05)', color: confColor }}>
+                    Confidence: {(confidence * 100).toFixed(0)}%
+                  </span>
+                )}
+              </div>
+            )}
+            {response.context && (
+              <div className="nlp-rag-context">
+                <span className="rag-label">📚 RAG Context</span>
+                <p className="rag-text">{response.context}</p>
               </div>
             )}
           </div>
