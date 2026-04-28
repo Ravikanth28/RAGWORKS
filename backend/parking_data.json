@@ -54,7 +54,8 @@
         },
         {
           "id": "TN-002",
-          "status": "free"
+          "status": "occupied",
+          "booked_by": "B70C4F5B"
         },
         {
           "id": "TN-003",
