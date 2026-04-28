@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import Timer from './Timer'
 
-export default function ActiveBookings({ bookings, onRelease, onRefresh }) {
+export default function ActiveBookings({ bookings, onRelease, onRefresh, onExpire }) {
   const handleRelease = useCallback(async (bookingId) => {
     if (window.confirm('Are you sure you want to release this slot?')) {
       await onRelease(bookingId)
@@ -44,7 +44,7 @@ export default function ActiveBookings({ bookings, onRelease, onRefresh }) {
             <Timer
               expiresAt={b.expires_at}
               totalDuration={b.duration}
-              onExpire={onRefresh}
+              onExpire={() => onExpire ? onExpire(b.slot_id) : onRefresh()}
             />
             <button
               id={`release-${b.booking_id}`}

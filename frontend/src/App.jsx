@@ -13,7 +13,7 @@ function App() {
     slots, slotMeta, loading,
     activeBookings, bookSlot, releaseSlot,
     fetchLocations, fetchSlots, fetchBookings,
-    sendNLP, toasts,
+    sendNLP, toasts, addToast,
   } = useParking()
 
   const [selectedSlot, setSelectedSlot] = useState(null)
@@ -33,11 +33,21 @@ function App() {
     }
   }, [selectLocation])
 
+  const handleNLPBook = useCallback(async (locationId, duration) => {
+    const result = await bookSlot(locationId, duration)
+    return result
+  }, [bookSlot])
+
   const handleRefresh = useCallback(() => {
     fetchLocations()
     fetchBookings()
     if (selectedLocation) fetchSlots(selectedLocation)
   }, [fetchLocations, fetchBookings, fetchSlots, selectedLocation])
+
+  const handleExpire = useCallback((slotId) => {
+    addToast(`Booking for slot ${slotId} has expired and was auto-released.`, 'info')
+    handleRefresh()
+  }, [addToast, handleRefresh])
 
   return (
     <div className="app">
@@ -90,7 +100,7 @@ function App() {
       {/* Main Content */}
       <main className="main">
         {/* NLP Smart Input */}
-        <NLPInput onSend={sendNLP} onPrefill={handleNLPPrefill} />
+        <NLPInput onSend={sendNLP} onPrefill={handleNLPPrefill} onBook={handleNLPBook} />
 
         {/* Content Grid */}
         <div className="content-grid">
@@ -157,6 +167,7 @@ function App() {
           bookings={activeBookings}
           onRelease={releaseSlot}
           onRefresh={handleRefresh}
+          onExpire={handleExpire}
         />
       </main>
       {/* Footer */}

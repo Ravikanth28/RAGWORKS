@@ -1,14 +1,17 @@
 import { useState } from 'react'
 
-export default function NLPInput({ onSend, onPrefill }) {
+export default function NLPInput({ onSend, onPrefill, onBook }) {
   const [text, setText] = useState('')
   const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [confirming, setConfirming] = useState(false)
+  const [confirmed, setConfirmed] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!text.trim() || loading) return
     setLoading(true)
+    setConfirmed(false)
     const result = await onSend(text)
     setResponse(result)
     setLoading(false)
@@ -115,6 +118,26 @@ export default function NLPInput({ onSend, onPrefill }) {
               <div className="nlp-rag-context">
                 <span className="rag-label">📚 RAG Context</span>
                 <p className="rag-text">{response.context}</p>
+              </div>
+            )}
+            {response.action === 'book' && response.prefill?.location && response.parsed?.params?.duration && (
+              <div className="nlp-confirm-row">
+                {confirmed ? (
+                  <span className="badge badge-green">✅ Booking confirmed!</span>
+                ) : (
+                  <button
+                    className="btn btn-primary"
+                    disabled={confirming}
+                    onClick={async () => {
+                      setConfirming(true)
+                      const result = await onBook(response.prefill.location, response.parsed.params.duration)
+                      setConfirming(false)
+                      if (result) setConfirmed(true)
+                    }}
+                  >
+                    {confirming ? '⏳ Booking...' : '✅ Confirm Booking'}
+                  </button>
+                )}
               </div>
             )}
           </div>

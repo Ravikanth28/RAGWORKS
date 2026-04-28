@@ -9,7 +9,8 @@
       "slots": [
         {
           "id": "AN-001",
-          "status": "free"
+          "status": "occupied",
+          "booked_by": "5033A997"
         },
         {
           "id": "AN-002",
@@ -55,7 +56,7 @@
         {
           "id": "TN-002",
           "status": "occupied",
-          "booked_by": "B70C4F5B"
+          "booked_by": "5CE19BD7"
         },
         {
           "id": "TN-003",
@@ -85,7 +86,8 @@
       "slots": [
         {
           "id": "VL-001",
-          "status": "free"
+          "status": "occupied",
+          "booked_by": "2FD39D76"
         },
         {
           "id": "VL-002",

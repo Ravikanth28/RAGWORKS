@@ -1,17 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Timer({ expiresAt, totalDuration, onExpire }) {
   const [remaining, setRemaining] = useState(0)
   const totalSeconds = totalDuration * 3600
+  const expiredFired = useRef(false)
 
   useEffect(() => {
+    expiredFired.current = false   // reset if expiresAt changes (new booking)
+
     const update = () => {
       const now = new Date()
       const end = new Date(expiresAt)
       const diff = Math.max(0, Math.floor((end - now) / 1000))
       setRemaining(diff)
-      if (diff <= 0 && onExpire) onExpire()
+
+      if (diff <= 0 && !expiredFired.current) {
+        expiredFired.current = true
+        // Small delay so the backend threading.Timer has time to release the slot
+        if (onExpire) setTimeout(onExpire, 1500)
+      }
     }
+
     update()
     const interval = setInterval(update, 1000)
     return () => clearInterval(interval)
